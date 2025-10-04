@@ -1,11 +1,455 @@
-<div class="section">
-                    <h2>💡 Soluciones Tech para E-commerce</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mondelez E-commerce Innovation | Binago & Nialtec</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            border-radius: 30px;
+            padding: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            gap: 5px;
+        }
+
+        .language-toggle button {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .language-toggle button.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .subtitle {
+            font-size: 1.5em;
+            opacity: 0.95;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 60px 50px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section h2 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .insight-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);
+        }
+
+        .insight-box h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .insight-box p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3.5em;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #f5f5f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .stat-source {
+            font-size: 0.85em;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .solution-card {
+            background: white;
+            border: 2px solid #e1e8ed;
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .solution-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .solution-card:hover {
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+            transform: translateY(-5px);
+            border-color: #667eea;
+        }
+
+        .solution-card h3 {
+            font-size: 1.6em;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .solution-card p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .solution-card strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .solution-card ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .solution-card ul li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #666;
+        }
+
+        .solution-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .challenge-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(252, 182, 159, 0.3);
+        }
+
+        .challenge-card h3 {
+            font-size: 1.4em;
+            color: #c0392b;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .challenge-card p {
+            color: #7f2c1f;
+            line-height: 1.6;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-box h3 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .cta-box p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .step-card {
+            background: rgba(255,255,255,0.15);
+            padding: 25px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .step-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 12px;
+        }
+
+        .step-card p {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .footer p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin: 10px 0;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #f093fb;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5em; }
+            .content { padding: 40px 25px; }
+            .section h2 { font-size: 2em; }
+            .solutions-grid, .challenge-grid, .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-toggle">
+        <button id="btn-en" class="active" onclick="setLanguage('en')">🇺🇸 EN</button>
+        <button id="btn-pt" onclick="setLanguage('pt')">🇧🇷 PT</button>
+        <button id="btn-es" onclick="setLanguage('es')">🇪🇸 ES</button>
+    </div>
+
+    <!-- ENGLISH VERSION -->
+    <div id="content-en" class="lang-content active">
+        <div class="container">
+            <div class="header">
+                <h1>🚀 E-commerce Innovation</h1>
+                <p class="subtitle">Premium Tech Solutions for Mondelez Digital Growth</p>
+            </div>
+
+            <div class="content">
+                <div class="insight-box">
+                    <h3>💡 The Digital Opportunity</h3>
+                    <p>Transform Mondelez e-commerce with biotech ingredients that enable clean-label, functional, and viral-worthy products. These pharmaceutical-grade technologies are ready to revolutionize digital-first snacking.</p>
+                </div>
+
+                <div class="section">
+                    <h2>📊 E-commerce Landscape 2025</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">20%</div>
+                            <div class="stat-label">Digital sales target 2030</div>
+                            <div class="stat-source">(Mondelez Investor Day 2025)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">60%</div>
+                            <div class="stat-label">Buy via social media</div>
+                            <div class="stat-source">(State of Snacking 2024)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">75%</div>
+                            <div class="stat-label">Seek new snacks online</div>
+                            <div class="stat-source">(Consumer Trends 2025)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">80%</div>
+                            <div class="stat-label">Want sustainability</div>
+                            <div class="stat-source">(ESG Report 2024)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>🎯 Digital Consumer Challenges</h2>
+                    <div class="challenge-grid">
+                        <div class="challenge-card">
+                            <h3>1. Clean Label Premium</h3>
+                            <p>85% willing to pay more for clean ingredients. Need "no artificial" claims that actually taste good.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <h3>2. Functional Snacking</h3>
+                            <p>Health-conscious consumers want benefits beyond taste: immunity, energy, wellness.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <h3>3. Mindful Portions</h3>
+                            <p>84% of sales are mindful portions. Next level: clean ingredients + functional benefits.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <h3>4. Social Commerce</h3>
+                            <p>Products need "wow factor" for digital virality and shareable health claims.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>💡 Tech Solutions for E-commerce</h2>
                     <div class="solutions-grid">
                         <div class="solution-card">
                             <h3>🍪 UNBITT (Bitter Blocker)</h3>
-                            <p><strong>Problema:</strong> Reducción de azúcar = sabor amargo</p>
-                            <p><strong>Solución:</strong> Máscara sabores indeseados sin alterar perfil sensorial</p>
-                            <p><strong>Casos Mondelez:</strong></p>
+                            <p><strong>Problem:</strong> Sugar reduction = bitter taste</p>
+                            <p><strong>Solution:</strong> Masks unwanted flavors without altering sensory profile</p>
+                            <p><strong>Mondelez Cases:</strong></p>
                             <ul>
                                 <li>Oreo Thins "Zero Added Sugar"</li>
                                 <li>Cadbury Dark 85% "Smooth"</li>
@@ -14,9 +458,9 @@
                         </div>
                         <div class="solution-card">
                             <h3>🧀 PHILADELPHIA + HEINZ B2B</h3>
-                            <p><strong>Oportunidad Food Service:</strong> Innovación en salsas y dips premium</p>
-                            <p><strong>Solución:</strong> UNBITT + LIPOSOMAS para clean label y funcionalidad</p>
-                            <p><strong>Claims B2B:</strong></p>
+                            <p><strong>Food Service Opportunity:</strong> Innovation in premium sauces & dips</p>
+                            <p><strong>Solution:</strong> UNBITT + LIPOSOMES for clean label & functionality</p>
+                            <p><strong>B2B Claims:</strong></p>
                             <ul>
                                 <li>Philadelphia "Reduced Sodium, Full Flavor"</li>
                                 <li>Heinz Sauces "Sugar-Free Gourmet Line"</li>
@@ -25,9 +469,9 @@
                         </div>
                         <div class="solution-card">
                             <h3>🫐 VITISOL (Grape Seed Extract)</h3>
-                            <p><strong>Problema:</strong> Consumidores buscan "functional snacks"</p>
-                            <p><strong>Solución:</strong> Antioxidantes naturales desamargados para claims salud</p>
-                            <p><strong>Casos Mondelez:</strong></p>
+                            <p><strong>Problem:</strong> Consumers seek "functional snacks"</p>
+                            <p><strong>Solution:</strong> Natural debittered antioxidants for health claims</p>
+                            <p><strong>Mondelez Cases:</strong></p>
                             <ul>
                                 <li>belVita "Antioxidant Boost"</li>
                                 <li>Cadbury "Wellness Bar"</li>
@@ -35,10 +479,10 @@
                             </ul>
                         </div>
                         <div class="solution-card">
-                            <h3>💊 LIPOSOMAS 90-PL</h3>
-                            <p><strong>Problema:</strong> Activos funcionales pierden efectividad en proceso</p>
-                            <p><strong>Solución:</strong> Encapsulación nano protege y libera ingredientes premium</p>
-                            <p><strong>Casos Mondelez:</strong></p>
+                            <h3>💊 LIPOSOMES 90-PL</h3>
+                            <p><strong>Problem:</strong> Functional actives lose efficacy in processing</p>
+                            <p><strong>Solution:</strong> Nano-encapsulation protects & delivers premium ingredients</p>
+                            <p><strong>Mondelez Cases:</strong></p>
                             <ul>
                                 <li>Milka "Collagen Infused"</li>
                                 <li>Toblerone "Vitamin D3"</li>
@@ -47,3 +491,355 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="cta-box">
+                    <h3>🎯 Next Steps: Digital Innovation Pilot</h3>
+                    <p>4-step roadmap to validate tech for Mondelez e-commerce</p>
+                    <div class="cta-steps">
+                        <div class="step-card">
+                            <h3>1. Validation Lab</h3>
+                            <p>Test 3 prototypes (Oreo/Cadbury/Trident) with UNBITT/VITISOL/LIPOSOMES</p>
+                        </div>
+                        <div class="step-card">
+                            <h3>2. Digital Content</h3>
+                            <p>Premium PDPs + tech storytelling videos</p>
+                        </div>
+                        <div class="step-card">
+                            <h3>3. DTC Pilot</h3>
+                            <p>Soft launch 1 exclusive SKU mondelez.com (3 months)</p>
+                        </div>
+                        <div class="step-card">
+                            <h3>4. Scale Strategy</h3>
+                            <p>Roadmap: Amazon, marketplaces, subscription boxes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <h3>🤝 Strategic Alliance</h3>
+                <p><strong><a href="https://www.youtube.com/watch?v=-VOM_oGm4zE&list=TLGG3GxFJD05TBEwNDEwMjAyNQ" target="_blank">Binago</a></strong> (San Juan, Puerto Rico, US & Blumenau, SC, Brazil) & <strong><a href="http://www.nialtec.com.br" target="_blank">Nialtec S.A.</a></strong> (Argentina)</p>
+                <p style="margin-top: 20px;">Business Intelligence • Technology • Innovation</p>
+                <p style="margin-top: 30px; font-size: 0.95em; opacity: 0.8;">
+                    Pharmaceutically validated technologies, ready for food-grade application.<br>
+                    Strategic partner for Mondelez digital commerce innovation pipeline.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PORTUGUESE VERSION -->
+    <div id="content-pt" class="lang-content">
+        <div class="container">
+            <div class="header">
+                <h1>🚀 Inovação E-commerce</h1>
+                <p class="subtitle">Soluções Tech Premium para Crescimento Digital Mondelez</p>
+            </div>
+
+            <div class="content">
+                <div class="insight-box">
+                    <h3>💡 A Oportunidade Digital</h3>
+                    <p>Transforme o e-commerce Mondelez com ingredientes biotech que permitem produtos clean-label, funcionais e virais. Estas tecnologias farmacêuticas estão prontas para revolucionar snacking digital-first.</p>
+                </div>
+
+                <div class="section">
+                    <h2>📊 Panorama E-commerce 2025</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">20%</div>
+                            <div class="stat-label">Meta vendas digitais 2030</div>
+                            <div class="stat-source">(Mondelez Investor Day 2025)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">60%</div>
+                            <div class="stat-label">Compram via redes sociais</div>
+                            <div class="stat-source">(State of Snacking 2024)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">75%</div>
+                            <div class="stat-label">Buscam novos snacks online</div>
+                            <div class="stat-source">(Consumer Trends 2025)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">80%</div>
+                            <div class="stat-label">Querem sustentabilidade</div>
+                            <div class="stat-source">(ESG Report 2024)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>🎯 Desafios Consumidor Digital</h2>
+                    <div class="challenge-grid">
+                        <div class="challenge-card">
+                            <h3>1. Clean Label Premium</h3>
+                            <p>85% pagam mais por ingredientes limpos. Precisam claims "sem artificiais" que realmente tenham sabor bom.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <h3>2. Snacking Funcional</h3>
+                            <p>Consumidores saudáveis querem benefícios além do sabor: imunidade, energia, bem-estar.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <h3>3. Porções Conscientes</h3>
+                            <p>84% das vendas são porções conscientes. Próximo nível: ingredientes limpos + benefícios funcionais.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <h3>4. Comércio Social</h3>
+                            <p>Produtos precisam "fator uau" para viralidade digital e claims de saúde compartilháveis.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>💡 Soluções Tech para E-commerce</h2>
+                    <div class="solutions-grid">
+                        <div class="solution-card">
+                            <h3>🍪 UNBITT (Bloqueador Amargo)</h3>
+                            <p><strong>Problema:</strong> Redução de açúcar = sabor amargo</p>
+                            <p><strong>Solução:</strong> Mascara sabores indesejados sem alterar perfil sensorial</p>
+                            <p><strong>Casos Mondelez:</strong></p>
+                            <ul>
+                                <li>Oreo Thins "Zero Açúcar Adicionado"</li>
+                                <li>Cadbury Dark 85% "Suave"</li>
+                                <li>Trident Zero "Rótulo Limpo"</li>
+                            </ul>
+                        </div>
+                        <div class="solution-card">
+                            <h3>🧀 PHILADELPHIA + HEINZ B2B</h3>
+                            <p><strong>Oportunidade Food Service:</strong> Inovação em molhos e dips premium</p>
+                            <p><strong>Solução:</strong> UNBITT + LIPOSOMAS para clean label e funcionalidade</p>
+                            <p><strong>Claims B2B:</strong></p>
+                            <ul>
+                                <li>Philadelphia "Sódio Reduzido, Sabor Total"</li>
+                                <li>Heinz Molhos "Linha Gourmet Zero Açúcar"</li>
+                                <li>Dips Premium "Probióticos Reforçados"</li>
+                            </ul>
+                        </div>
+                        <div class="solution-card">
+                            <h3>🫐 VITISOL (Extrato Semente Uva)</h3>
+                            <p><strong>Problema:</strong> Consumidores buscam "snacks funcionais"</p>
+                            <p><strong>Solução:</strong> Antioxidantes naturais desamargados para claims saúde</p>
+                            <p><strong>Casos Mondelez:</strong></p>
+                            <ul>
+                                <li>belVita "Boost Antioxidante"</li>
+                                <li>Cadbury "Barra Wellness"</li>
+                                <li>Ritz "Saudável Coração"</li>
+                            </ul>
+                        </div>
+                        <div class="solution-card">
+                            <h3>💊 LIPOSOMAS 90-PL</h3>
+                            <p><strong>Problema:</strong> Ativos funcionais perdem eficácia no processo</p>
+                            <p><strong>Solução:</strong> Encapsulação nano protege e libera ingredientes premium</p>
+                            <p><strong>Casos Mondelez:</strong></p>
+                            <ul>
+                                <li>Milka "Infusão Colágeno"</li>
+                                <li>Toblerone "Vitamina D3"</li>
+                                <li>Chips Ahoy! "Proteína+"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-box">
+                    <h3>🎯 Próximos Passos: Piloto Inovação Digital</h3>
+                    <p>Roadmap 4 etapas para validar tech no e-commerce Mondelez</p>
+                    <div class="cta-steps">
+                        <div class="step-card">
+                            <h3>1. Lab Validação</h3>
+                            <p>Teste 3 protótipos (Oreo/Cadbury/Trident) com UNBITT/VITISOL/LIPOSOMAS</p>
+                        </div>
+                        <div class="step-card">
+                            <h3>2. Conteúdo Digital</h3>
+                            <p>PDPs premium + vídeos storytelling tech</p>
+                        </div>
+                        <div class="step-card">
+                            <h3>3. Piloto DTC</h3>
+                            <p>Soft launch 1 SKU exclusivo mondelez.com (3 meses)</p>
+                        </div>
+                        <div class="step-card">
+                            <h3>4. Estratégia Escala</h3>
+                            <p>Roadmap: Amazon, marketplaces, subscription boxes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <h3>🤝 Aliança Estratégica</h3>
+                <p><strong><a href="https://www.youtube.com/watch?v=-VOM_oGm4zE&list=TLGG3GxFJD05TBEwNDEwMjAyNQ" target="_blank">Binago</a></strong> (San Juan, Puerto Rico, US & Blumenau, SC, Brasil) & <strong><a href="http://www.nialtec.com.br" target="_blank">Nialtec S.A.</a></strong> (Argentina)</p>
+                <p style="margin-top: 20px;">Inteligência de Negócios • Tecnologia • Inovação</p>
+                <p style="margin-top: 30px; font-size: 0.95em; opacity: 0.8;">
+                    Tecnologias validadas farmaceuticamente, prontas para aplicação food-grade.<br>
+                    Parceiro estratégico para pipeline inovação comércio digital Mondelez.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SPANISH VERSION -->
+    <div id="content-es" class="lang-content">
+        <div class="container">
+            <div class="header">
+                <h1>🚀 Innovación E-commerce</h1>
+                <p class="subtitle">Soluciones Tech Premium para Crecimiento Digital Mondelez</p>
+            </div>
+
+            <div class="content">
+                <div class="insight-box">
+                    <h3>💡 La Oportunidad Digital</h3>
+                    <p>Transforme el e-commerce Mondelez con ingredientes biotech que permiten productos clean-label, funcionales y virales. Estas tecnologías farmacéuticas están listas para revolucionar el snacking digital-first.</p>
+                </div>
+
+                <div class="section">
+                    <h2>📊 Panorama E-commerce 2025</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">20%</div>
+                            <div class="stat-label">Meta ventas digitales 2030</div>
+                            <div class="stat-source">(Mondelez Investor Day 2025)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">60%</div>
+                            <div class="stat-label">Compran vía redes sociales</div>
+                            <div class="stat-source">(State of Snacking 2024)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">75%</div>
+                            <div class="stat-label">Buscan nuevos snacks online</div>
+                            <div class="stat-source">(Consumer Trends 2025)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">80%</div>
+                            <div class="stat-label">Quieren sustentabilidad</div>
+                            <div class="stat-source">(ESG Report 2024)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>🎯 Desafíos Consumidor Digital</h2>
+                    <div class="challenge-grid">
+                        <div class="challenge-card">
+                            <h3>1. Clean Label Premium</h3>
+                            <p>85% pagan más por ingredientes limpios. Necesitan claims "sin artificiales" que realmente sepan bien.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <h3>2. Snacking Funcional</h3>
+                            <p>Consumidores saludables quieren beneficios más allá del sabor: inmunidad, energía, bienestar.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <h3>3. Porciones Conscientes</h3>
+                            <p>84% de ventas son porciones conscientes. Siguiente nivel: ingredientes limpios + beneficios funcionales.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <h3>4. Comercio Social</h3>
+                            <p>Productos necesitan "factor wow" para viralidad digital y claims de salud compartibles.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>💡 Soluciones Tech para E-commerce</h2>
+                    <div class="solutions-grid">
+                        <div class="solution-card">
+                            <h3>🍪 UNBITT (Bloqueador Amargo)</h3>
+                            <p><strong>Problema:</strong> Reducción de azúcar = sabor amargo</p>
+                            <p><strong>Solución:</strong> Máscara sabores indeseados sin alterar perfil sensorial</p>
+                            <p><strong>Casos Mondelez:</strong></p>
+                            <ul>
+                                <li>Oreo Thins "Zero Azúcar Agregada"</li>
+                                <li>Cadbury Dark 85% "Suave"</li>
+                                <li>Trident Zero "Etiqueta Limpia"</li>
+                            </ul>
+                        </div>
+                        <div class="solution-card">
+                            <h3>🧀 PHILADELPHIA + HEINZ B2B</h3>
+                            <p><strong>Oportunidad Food Service:</strong> Innovación en salsas y dips premium</p>
+                            <p><strong>Solución:</strong> UNBITT + LIPOSOMAS para clean label y funcionalidad</p>
+                            <p><strong>Claims B2B:</strong></p>
+                            <ul>
+                                <li>Philadelphia "Sodio Reducido, Sabor Completo"</li>
+                                <li>Heinz Salsas "Línea Gourmet Sin Azúcar"</li>
+                                <li>Dips Premium "Probióticos Mejorados"</li>
+                            </ul>
+                        </div>
+                        <div class="solution-card">
+                            <h3>🫐 VITISOL (Extracto Semilla Uva)</h3>
+                            <p><strong>Problema:</strong> Consumidores buscan "snacks funcionales"</p>
+                            <p><strong>Solución:</strong> Antioxidantes naturales desamargados para claims salud</p>
+                            <p><strong>Casos Mondelez:</strong></p>
+                            <ul>
+                                <li>belVita "Impulso Antioxidante"</li>
+                                <li>Cadbury "Barra Bienestar"</li>
+                                <li>Ritz "Corazón Saludable"</li>
+                            </ul>
+                        </div>
+                        <div class="solution-card">
+                            <h3>💊 LIPOSOMAS 90-PL</h3>
+                            <p><strong>Problema:</strong> Activos funcionales pierden eficacia en proceso</p>
+                            <p><strong>Solución:</strong> Encapsulación nano protege y libera ingredientes premium</p>
+                            <p><strong>Casos Mondelez:</strong></p>
+                            <ul>
+                                <li>Milka "Infusión Colágeno"</li>
+                                <li>Toblerone "Vitamina D3"</li>
+                                <li>Chips Ahoy! "Proteína+"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-box">
+                    <h3>🎯 Próximos Pasos: Piloto Innovación Digital</h3>
+                    <p>Roadmap 4 etapas para validar tech en e-commerce Mondelez</p>
+                    <div class="cta-steps">
+                        <div class="step-card">
+                            <h3>1. Lab Validación</h3>
+                            <p>Prueba 3 prototipos (Oreo/Cadbury/Trident) con UNBITT/VITISOL/LIPOSOMAS</p>
+                        </div>
+                        <div class="step-card">
+                            <h3>2. Contenido Digital</h3>
+                            <p>PDPs premium + videos storytelling tech</p>
+                        </div>
+                        <div class="step-card">
+                            <h3>3. Piloto DTC</h3>
+                            <p>Soft launch 1 SKU exclusivo mondelez.com (3 meses)</p>
+                        </div>
+                        <div class="step-card">
+                            <h3>4. Estrategia Escala</h3>
+                            <p>Roadmap: Amazon, marketplaces, subscription boxes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <h3>🤝 Alianza Estratégica</h3>
+                <p><strong><a href="https://www.youtube.com/watch?v=-VOM_oGm4zE&list=TLGG3GxFJD05TBEwNDEwMjAyNQ" target="_blank">Binago</a></strong> (San Juan, Puerto Rico, US & Blumenau, SC, Brasil) & <strong><a href="http://www.nialtec.com.br" target="_blank">Nialtec S.A.</a></strong> (Argentina)</p>
+                <p style="margin-top: 20px;">Inteligencia de Negocios • Tecnología • Innovación</p>
+                <p style="margin-top: 30px; font-size: 0.95em; opacity: 0.8;">
+                    Tecnologías validadas farmacéuticamente, listas para aplicación food-grade.<br>
+                    Socio estratégico para pipeline innovación comercio digital Mondelez.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setLanguage(lang) {
+            document.querySelectorAll('.lang-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            document.getElementById('content-' + lang).classList.add('active');
+            
+            document.querySelectorAll('.language-toggle button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('btn-' + lang).classList.add('active');
+            
+            const langMap = {'en': 'en', 'pt': 'pt-BR', 'es': 'es'};
+            document.documentElement.lang = langMap[lang];
+        }
+    </script>
+</body>
+</html>
